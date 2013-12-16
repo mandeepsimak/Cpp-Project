@@ -31,6 +31,7 @@ int main()
     ReadInput();
     ShowInput();
     TotalProfit();
+    QuaterlyProfit();
     //cout << "Hello world!" << endl;
     return 0;
 }
@@ -85,6 +86,10 @@ void ShowInput()
     }
 }
 
+/**
+ *  Finding total profit of each item and its average profit too.
+ */
+
 void TotalProfit()
 {
     // Calculating total and average profit of each item
@@ -110,5 +115,43 @@ void TotalProfit()
              << totalProfit[i] << "\t\t"
              << avgProfit[i]
              << endl;
+    }
+}
+
+/**
+ *  Finding item having greatest profit and its quater
+ */
+
+ void QuaterlyProfit()
+ {
+    int maxProfit[totalItems];  /* Storing index value of quater
+                                   having maximum value of each item */
+
+    for(i = 0; i < totalItems; i++)
+    {
+        int length = quater;  // establish size of array
+
+        maxProfit[i] = 0;//quaterValue[i][0];       // start with max = index of first element
+
+        // Finding index value for maximum profit of each item
+
+        for(j = 1; j < length; j++)
+        {
+            if(quaterValue[i][j] > quaterValue[i][maxProfit[i]])
+                maxProfit[i] = j;
+        }
+
+        //cout << "Max Index: " << quaterValue[i][maxProfit[i]] << endl;
+    }
+
+    // Finding Maximum profit from all items.
+
+    for(i = 0; i < totalItems; i++)
+    {
+        for(j = 1; j < length; j++)
+        {
+            if(quaterValue[i][j] > quaterValue[i][maxProfit[i]])
+                maxProfit[i] = j;
+        }
     }
 }
