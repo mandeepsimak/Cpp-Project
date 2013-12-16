@@ -14,22 +14,23 @@ string fileName = "input.in"; /// Input file name
 int i , j,                  /// for looping variables
     totalItems,             /// Total Items in Input file
     totalProfit[MAX_SIZE],  /// Total Profit of each item
+    avgProfit[MAX_SIZE],    /// Average profit of each item
     quaterValue[MAX_SIZE][quater];  /** Amount of profit/loss value of item
                                         in input file */
 
-string itemName[MAX_SIZE],
-       temp;
+string itemName[MAX_SIZE],  /// Item Names in file
+       temp;                /// Temperary variable
 
 void ReadInput();
 void ShowInput();
 void TotalProfit();
-
-using namespace std;
+void QuaterlyProfit();
 
 int main()
 {
     ReadInput();
     ShowInput();
+    TotalProfit();
     //cout << "Hello world!" << endl;
     return 0;
 }
@@ -57,6 +58,7 @@ void ReadInput()
         {
             inFile >> quaterValue[i][j];
         }
+        totalProfit[i] = 0; /// Initializing value to zero
     }
 
     inFile.close();
@@ -80,5 +82,33 @@ void ShowInput()
             cout << quaterValue[i][j] << " ";
         }
         cout << endl;
+    }
+}
+
+void TotalProfit()
+{
+    // Calculating total and average profit of each item
+    for(i = 0; i < totalItems; i++)
+    {
+        for(j = 0; j < quater; j++)
+        {
+            // Adding values of quaters of each item
+            totalProfit[i] += quaterValue[i][j];
+        }
+        // Dividing total profit with no of quaters i.e. 4
+        avgProfit[i] = totalProfit[i] / quater;
+    }
+
+    // Displaying Profit and average profit
+
+    cout << "\nTotal Profit and Average Profit of each Item\n" << endl;
+    cout << "Item Name \t Total Profit \t Average Profit" << endl;
+
+    for(i = 0; i < totalItems; i++)
+    {
+        cout << itemName[i] << "\t\t"
+             << totalProfit[i] << "\t\t"
+             << avgProfit[i]
+             << endl;
     }
 }
