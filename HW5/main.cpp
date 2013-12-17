@@ -384,11 +384,11 @@ void account_info(const BankAccount account[], int num_accts)
     else
     {
         cout << "\nAccount Info of " << acc_no << "\n" << endl;
-        cout << "First Name: " << account[i].first_name << endl
-             << "Last Name: " << account[i].last_name << endl
-             << "Security No: " << account[i].security_no << endl
-             << "Account Type: " << account[i].acc_type << endl
-             << "Balance: " << account[i].acc_balance << endl;
+        cout << "First Name: " << account[index].first_name << endl
+             << "Last Name: " << account[index].last_name << endl
+             << "Security No: " << account[index].security_no << endl
+             << "Account Type: " << account[index].acc_type << endl
+             << "Balance: " << account[index].acc_balance << endl;
     }
 }
 
