@@ -36,7 +36,7 @@ int main()
     QuarterlyProfit();
     ProfitLossQuarter();
     QuarterGraph();
-    //cout << "Hello world!" << endl;
+
     return 0;
 }
 
