@@ -1,5 +1,5 @@
 #include <iostream>
-#include <fstream>      //  file handling
+#include <fstream>      // file handling
 #include <algorithm>    // sort
 #include <vector>       // vector
 
@@ -35,7 +35,7 @@ void SortNetPay();
 
 int main()
 {
-    cout << "\n \t Misor Coroperation Payroll\n" << endl;
+    cout << "\n \t\t Misor Coroperation Payroll\n" << endl;
     ReadInput();
     DisplayInput();
     FindBasePay();
@@ -43,7 +43,7 @@ int main()
     FindNetPay();
 
     // Display all calculated details of employee
-    cout << "\nEMPLOYEE'S BASE PAY, TAX AND NET PAY DETAILS\n" << endl;
+    cout << "\n\t EMPLOYEE'S BASE PAY, TAX AND NET PAY DETAILS\n" << endl;
     cout << "NAME \t"
          << "HOURS WORKED \t"
          << "RATE OF PAY \t"
@@ -69,7 +69,7 @@ int main()
     SortAlphabatically();
     SortNetPay();
 
-    cout << "\n \t PAYROLL PROCESS IS COMPLETE \n";
+    cout << "\n \t\t PAYROLL PROCESS IS COMPLETE \n";
 
     return 0;
 }
@@ -82,18 +82,19 @@ void ReadInput()
 {
     ifstream inFile;
     inFile.open(inputFile.c_str());
-    i = totalEmployees = 0;
 
-    while(getline(inFile, name[i], '\n'))
+    i = totalEmployees = 0; // Initializing values to 0
+
+    while(getline(inFile, name[i], '\n'))   // Reading employee Name
     {
-        if(inFile.eof())
+        if(inFile.eof())    // Break if end of file
             break;
 
-        inFile >> hrsWorked[i] >> rateOfPay[i] >> age[i];
+        inFile >> hrsWorked[i] >> rateOfPay[i] >> age[i];   // Reading other details
         i++;
-        getline(inFile, temp, '\n');
+        getline(inFile, temp, '\n');    // Reading empty space(temporary).
     }
-    totalEmployees = i;
+    totalEmployees = i; // Setting total employees in file
 
     inFile.close();
 }
@@ -104,7 +105,8 @@ void ReadInput()
 
 void DisplayInput()
 {
-    cout << "\nDISPLAYING DETAILS OF EMPLOYEEi\n" << endl;
+    cout << "\n\t DISPLAYING DETAILS OF EMPLOYEE \n" << endl;
+
     for(i = 0; i < totalEmployees; i++)
     {
         cout << "Name: "<< name[i] << "\t"
@@ -128,9 +130,9 @@ void FindBasePay()
 
     for(i = 0; i < totalEmployees; i++)
     {
-        extraHrs = hrsWorked[i] - minHrs;
-        overtimePay = overtimeRate * extraHrs;
-        basePay[i] = (rateOfPay[i] * minHrs) + overtimePay;
+        extraHrs = hrsWorked[i] - minHrs;   // Finding extra hrs of employee
+        overtimePay = (overtimeRate * rateOfPay[i]) * extraHrs;  // Calculating pay of extra hrs.
+        basePay[i] = (rateOfPay[i] * minHrs) + overtimePay; // Calculating base pay
     }
 }
 
@@ -140,10 +142,10 @@ void FindBasePay()
 
 void FindTax()
 {
-    int oldTaxRate = 50,
-        youngTaxRate = 10;
+    int oldTaxRate = 50,    // Tax rate of older than 55 age in %
+        youngTaxRate = 10;  // Tax rate of younger than 55 age in %
 
-    int oldAge = 55;
+    int oldAge = 55;    // Min. age of old employee
 
     for(i = 0; i < totalEmployees; i++)
     {
@@ -179,17 +181,17 @@ void OldYoungEmployee()
 
     for(i = 1; i < totalEmployees; i++)
     {
-        if(age[i] > age[oldEmployee])
+        if(age[i] > age[oldEmployee])   // Finding oldest employee
             oldEmployee = i;
 
-        if(age[i] < age[youngEmployee])
+        if(age[i] < age[youngEmployee]) // Finding youngest employee
             youngEmployee = i;
     }
 
     // Displaying oldest and youngest employee
 
-    cout << "\nYOUNGEST AND OLDEST EMPLOYEES.\n" << endl
-         << "Youngest Employees\n" << endl;
+    cout << "\n\t YOUNGEST AND OLDEST EMPLOYEES \n" << endl
+         << " Youngest Employees\n" << endl;
 
     for(i = 0; i < totalEmployees; i++)
     {
@@ -200,7 +202,7 @@ void OldYoungEmployee()
         }
     }
 
-    cout << "\nOldest Employees\n" << endl;
+    cout << "\n Oldest Employees\n" << endl;
 
     for(i = 0; i < totalEmployees; i++)
     {
@@ -218,13 +220,13 @@ void OldYoungEmployee()
 
 void MostPaidTaxEmployee()
 {
-    int maxTax = 100;   // Set value of max tax.
+    int maxTax = 100;   // Set value of max tax. You can change max tax here.
 
-    cout << "\nEMPLOYEES WHO PAID TAX MORE THAN " << maxTax << ".\n" << endl;
+    cout << "\n\t EMPLOYEES WHO PAID TAX MORE THAN " << maxTax << ".\n" << endl;
 
     for(i = 0; i < totalEmployees; i++)
     {
-        if(tax[i] > maxTax)
+        if(tax[i] > maxTax) // Display details if tax > maxtax
         {
             cout << "Name: " << name[i] << "\t"
                  << "Tax Paid: " << tax[i] << endl;
@@ -238,7 +240,7 @@ void MostPaidTaxEmployee()
 
 void SortAlphabatically()
 {
-    vector<string> sortedArray;
+    vector<string> sortedArray; // String array
 
     // Copying employee names in sortedArray
 
@@ -251,12 +253,22 @@ void SortAlphabatically()
 
     sort(sortedArray.begin(), sortedArray.end());
 
-    cout << "\nSORTING EMPLOYEE DETAILS ALPHABATICALLY\n" << endl;
+    cout << "\n\t SORTING EMPLOYEE DETAILS ALPHABATICALLY \n" << endl;
+
+    cout << "NAME \t"
+         << "HOURS WORKED \t"
+         << "RATE OF PAY \t"
+         << "AGE \t"
+         << "BASE PAY \t"
+         << "TAX \t"
+         << "NET PAY \n"
+         << endl;
 
     for(i = 0; i < totalEmployees; i++)
     {
         for(int j = 0; j < totalEmployees; j++)
         {
+            // Matches value of name with sorted array and displays result
             if(sortedArray[i] == name[j])
             {
                 cout << name[j] << "\t"
@@ -278,7 +290,7 @@ void SortAlphabatically()
 
 void SortNetPay()
 {
-    vector<int> sortedArray;
+    vector<float> sortedArray;
 
     // Copying employee names in sortedArray
 
@@ -291,7 +303,7 @@ void SortNetPay()
 
     sort(sortedArray.begin(), sortedArray.end());
 
-    cout << "\nSORTING EMPLOYEE DETAILS w.r.t. NET PAY\n" << endl;
+    cout << "\n\t SORTING EMPLOYEE DETAILS w.r.t. NET PAY \n" << endl;
     cout << "NAME \t"
          << "HOURS WORKED \t"
          << "RATE OF PAY \t"
@@ -306,7 +318,8 @@ void SortNetPay()
         cout << sortedArray[i] << endl;
         for(int j = 0; j < totalEmployees; j++)
         {
-            if(sortedArray[i] == tax[j])
+            // Matches value of net pay with sorted array and displays result
+            if(sortedArray[i] == netPay[j])
             {
                 cout << name[j] << "\t"
                      << hrsWorked[j] << "\t"
