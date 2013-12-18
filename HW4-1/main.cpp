@@ -169,6 +169,7 @@ void bookType :: addBook()
     cout << "\n\t ADD NEW BOOK RECORD \n" << endl;
 
     cout << "Book Title: ";
+    getline(cin, temp, '\n');
     getline(cin, title[index], '\n');
 
     cout << "No. of authors of book: ";
@@ -177,6 +178,8 @@ void bookType :: addBook()
     for(i = 0; i < totalAuthor[index]; i++)
     {
         cout << "Author " << (i + 1) << ": ";
+        if(i == 0)
+            getline(cin, temp, '\n');
         getline(cin, author[index][i], '\n');
     }
 
@@ -265,6 +268,7 @@ void bookType :: updateBook()
 
                     case 3:
                         cout << "Name of publisher: ";
+                        getline(cin, temp, '\n');
                         getline(cin, publisher[index], '\n');
                         break;
 
@@ -332,7 +336,8 @@ void bookType :: searchBook()
 
     if( index >= 0)
     {
-                    // Displaying Book details
+        // Displaying Book details
+        cout << "\n";
         cout << "Book Title: " << title[index] << endl;
 
         cout << "No. of authors of book: "<< totalAuthor[index] << endl;
@@ -350,7 +355,7 @@ void bookType :: searchBook()
 
         cout << "Book Price: " << bookPrice[index] << endl;
 
-        cout << "Books in stock: " << stock[index] << endl;
+        cout << "Books in stock: " << stock[index] << endl << endl;
     }
     else
     {
@@ -454,6 +459,7 @@ void memberType :: newMember()
     index = totalMembers;
 
     cout << "Member Name: ";
+    getline(cin, temp, '\n');
     getline(cin, name[index], '\n');
 
     cout << "Member ID: ";
