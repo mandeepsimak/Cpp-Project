@@ -34,10 +34,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="book.in" />
 		<Unit filename="include/bookstore.h" />
 		<Unit filename="include/booktype.h" />
 		<Unit filename="include/membertype.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="member.in" />
 		<Unit filename="src/bookstore.cpp" />
 		<Unit filename="src/booktype.cpp" />
 		<Unit filename="src/membertype.cpp" />

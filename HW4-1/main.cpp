@@ -169,7 +169,7 @@ void bookType :: addBook()
     cout << "\n\t ADD NEW BOOK RECORD \n" << endl;
 
     cout << "Book Title: ";
-    cin >> title[index];
+    getline(cin, title[index], '\n');
 
     cout << "No. of authors of book: ";
     cin >> totalAuthor[index];
@@ -177,11 +177,11 @@ void bookType :: addBook()
     for(i = 0; i < totalAuthor[index]; i++)
     {
         cout << "Author " << (i + 1) << ": ";
-        cin >> author[index][i];
+        getline(cin, author[index][i], '\n');
     }
 
     cout << "Name of publisher: ";
-    cin >> publisher[index];
+    getline(cin, publisher[index], '\n');
 
     cout << "Enter ISBN Number: ";
     cin >> ISBNNumber[index];
@@ -246,7 +246,8 @@ void bookType :: updateBook()
                 {
                     case 1:
                         cout << "Book Title: ";
-                        cin >> title[index];
+                        getline(cin, temp, '\n');
+                        getline(cin, title[index], '\n');
                         break;
 
                     case 2:
@@ -256,13 +257,15 @@ void bookType :: updateBook()
                         for(i = 0; i < totalAuthor[index]; i++)
                         {
                             cout << "Author " << (i + 1) << ": ";
-                            cin >> author[index][i];
+                            if (i == 0)
+                                getline(cin, temp, '\n');
+                            getline(cin, author[index][i], '\n');
                         }
                         break;
 
                     case 3:
                         cout << "Name of publisher: ";
-                        cin >> publisher[index];
+                        getline(cin, publisher[index], '\n');
                         break;
 
                     case 4:
@@ -451,7 +454,7 @@ void memberType :: newMember()
     index = totalMembers;
 
     cout << "Member Name: ";
-    cin >> name[index];
+    getline(cin, name[index], '\n');
 
     cout << "Member ID: ";
     cin >> memberID[index];
@@ -560,7 +563,8 @@ void memberType :: updateMember()
                 {
                     case 1:
                         cout << "Member Name: ";
-                        cin >> name[index];
+                        getline(cin, temp, '\n');
+                        getline(cin, name[index], '\n');
 
                         break;
 
@@ -596,7 +600,7 @@ void memberType :: updateMember()
                 };
 
 
-            }while(choice < 0 || choice > 5);
+            }while(choice != 0);
 
         }while(choice != 0);
 
