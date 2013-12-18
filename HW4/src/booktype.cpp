@@ -100,85 +100,91 @@ void bookType :: updateBook()
         if(recordNo == ISBNNumber[i])
         {
             index = i;
-            do
-            {
-                do
-                {
-                    cout << "Select option to update value\n" << endl
-                         << "1 \t Title" << endl
-                         << "2 \t Authors" << endl
-                         << "3 \t Publisher Name" << endl
-                         << "4 \t ISBN Number" << endl
-                         << "5 \t Year of Publication" << endl
-                         << "6 \t Book Price" << endl
-                         << "7 \t Books in stock" << endl
-                         << "0 \t EXIT" << endl
-                         << "\n Enter Choice: ";
-                    cin >> choice;
-
-                    switch(choice)
-                    {
-                        case 1:
-                            cout << "Book Title: ";
-                            cin >> title[index];
-                            break;
-
-                        case 2:
-                            cout << "No. of authors of book: ";
-                            cin >> totalAuthor[index];
-
-                            for(i = 0; i < totalAuthor[index]; i++)
-                            {
-                                cout << "Author " << (i + 1) << ": ";
-                                cin >> author[index][i];
-                            }
-                            break;
-
-                        case 3:
-                            cout << "Name of publisher: ";
-                            cin >> publisher[index];
-                            break;
-
-                        case 4:
-                            cout << "Enter ISBN Number: ";
-                            cin >> ISBNNumber[index];
-                            break;
-
-                        case 5:
-                            cout << "Year of publication: ";
-                            cin >> publicationYear[index];
-                            break;
-
-                        case 6:
-                            cout << "Book Price: ";
-                            cin >> bookPrice[index];
-                            break;
-
-                        case 7:
-                            cout << "Books in stock: ";
-                            cin >> stock[index];
-                            break;
-
-                        case 0:
-                            cout << "\n EXIT \n" << endl;
-                            break;
-
-                        default:
-                            cout << "\n WRONG CHOICE." << endl;
-                            break;
-                    };
-
-
-                }while(choice < 0 || choice > 7);
-
-            }while(choice != 0);
+            break;
         }
         else
         {
-            cout << "\n\t RECORD NOT FOUND. \n" << endl;
+            index = -1;
         }
     }
 
+    if(index >= 0)
+    {
+        do
+        {
+            do
+            {
+                cout << "Select option to update value\n" << endl
+                     << "1 \t Title" << endl
+                     << "2 \t Authors" << endl
+                     << "3 \t Publisher Name" << endl
+                     << "4 \t ISBN Number" << endl
+                     << "5 \t Year of Publication" << endl
+                     << "6 \t Book Price" << endl
+                     << "7 \t Books in stock" << endl
+                     << "0 \t EXIT" << endl
+                     << "\n Enter Choice: ";
+                cin >> choice;
+
+                switch(choice)
+                {
+                    case 1:
+                        cout << "Book Title: ";
+                        cin >> title[index];
+                        break;
+
+                    case 2:
+                        cout << "No. of authors of book: ";
+                        cin >> totalAuthor[index];
+
+                        for(i = 0; i < totalAuthor[index]; i++)
+                        {
+                            cout << "Author " << (i + 1) << ": ";
+                            cin >> author[index][i];
+                        }
+                        break;
+
+                    case 3:
+                        cout << "Name of publisher: ";
+                        cin >> publisher[index];
+                        break;
+
+                    case 4:
+                        cout << "Enter ISBN Number: ";
+                        cin >> ISBNNumber[index];
+                        break;
+
+                    case 5:
+                        cout << "Year of publication: ";
+                        cin >> publicationYear[index];
+                        break;
+
+                    case 6:
+                        cout << "Book Price: ";
+                        cin >> bookPrice[index];
+                        break;
+
+                    case 7:
+                        cout << "Books in stock: ";
+                        cin >> stock[index];
+                        break;
+
+                    case 0:
+                        cout << "\n EXIT \n" << endl;
+                        break;
+
+                    default:
+                        cout << "\n WRONG CHOICE." << endl;
+                        break;
+                };
+
+
+            }while(choice < 0 || choice > 7);
+
+        }while(choice != 0);
+    }
+    else
+        cout << "\n\t RECORD NOT FOUND. \n" << endl;
 }
 
 /**
@@ -198,31 +204,38 @@ void bookType :: searchBook()
         if(recordNo == ISBNNumber[i])
         {
             index = i;
-
-            // Displaying Book details
-            cout << "Book Title: " << title[index] << endl;
-
-            cout << "No. of authors of book: "<< totalAuthor[index] << endl;
-
-            for(i = 0; i < totalAuthor[index]; i++)
-            {
-                cout << "Author " << (i + 1) << ": " << author[index][i] << endl;
-            }
-
-            cout << "Name of publisher: " << publisher[index] << endl;
-
-            cout << "Enter ISBN Number: " << ISBNNumber[index] << endl;
-
-            cout << "Year of publication: " << publicationYear[index] << endl;
-
-            cout << "Book Price: " << bookPrice[index] << endl;
-
-            cout << "Books in stock: " << stock[index] << endl;
         }
         else
         {
-            cout << "\n\t RECORD NOT FOUND. \n" << endl;
+            index = -1;
         }
+    }
+
+    if( index >= 0)
+    {
+                    // Displaying Book details
+        cout << "Book Title: " << title[index] << endl;
+
+        cout << "No. of authors of book: "<< totalAuthor[index] << endl;
+
+        for(i = 0; i < totalAuthor[index]; i++)
+        {
+            cout << "Author " << (i + 1) << ": " << author[index][i] << endl;
+        }
+
+        cout << "Name of publisher: " << publisher[index] << endl;
+
+        cout << "Enter ISBN Number: " << ISBNNumber[index] << endl;
+
+        cout << "Year of publication: " << publicationYear[index] << endl;
+
+        cout << "Book Price: " << bookPrice[index] << endl;
+
+        cout << "Books in stock: " << stock[index] << endl;
+    }
+    else
+    {
+        cout << "\n\t RECORD NOT FOUND. \n" << endl;
     }
 }
 

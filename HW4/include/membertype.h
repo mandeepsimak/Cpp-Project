@@ -13,17 +13,25 @@ class memberType
     public:
         /** Default constructor */
         memberType();
+
         /** Default destructor */
         ~memberType();
+
         /** Add new member */
         void newMember();
+
         /** Search Member from record */
         void searchMember();
+
         /** update member record */
         void updateMember();
 
+        /** Member menu */
+        void memberMenu();
+
     protected:
-        string name[MAX_MEM];        // Member name
+        string name[MAX_MEM],        // Member name
+               temp;
 
         const string fileName = "member.in";
 
@@ -31,7 +39,8 @@ class memberType
             amountSpent[MAX_MEM],       // Amount spent on book store
             booksBought[MAX_MEM],       // No of books bought
             totalMembers,               // total Members
-            i, j;
+            i, j,
+            index;
 
         char membershipFee[MAX_MEM];     // Membership fee yes = paid and no = not pais
 

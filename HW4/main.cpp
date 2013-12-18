@@ -7,5 +7,7 @@ int main()
 {
     bookStore book;
 
+    book.bookStoreMenu();
+
     return 0;
 }

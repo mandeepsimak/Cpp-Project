@@ -14,14 +14,19 @@ class bookType
     public:
         /** Default constructor */
         bookType();
+
         /** Default destructor */
         ~bookType();
+
         /** Add new bok record */
         void addBook();
+
         /** Update book record */
         void updateBook();
+
         /** Search book record */
         void searchBook();
+
         /** Book Menu */
         void bookMenu();
 
@@ -32,7 +37,7 @@ class bookType
             totalBooks,                    /**< Total Book records in file */
             bookPrice[MAX_BOOKS],          /**< Book Price */
             stock[MAX_BOOKS],              /**< No. of copies in stock */
-            i, j,               // Looping variables
+            i, j,                          /**< Looping variables */
             index;                         /** index of array */
 
         string title[MAX_BOOKS],                /**< Title of book */
