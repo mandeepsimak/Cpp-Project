@@ -45,7 +45,7 @@ class bookType
                ISBNNumber[MAX_BOOKS],           /**< ISBN Number */
                temp;                            /**< Temporary variable */
 
-        const string inputFile = "book.in";     /**< Input file for book record */
+        string inputFile;// = "book.in";     /**< Input file for book record */
 
 };
 
@@ -79,7 +79,7 @@ class memberType
         string name[MAX_MEM],        // Member name
                temp;
 
-        const string fileName = "member.in";
+        string inputFile;
 
         int memberID[MAX_MEM],          // Member ID
             amountSpent[MAX_MEM],       // Amount spent on book store
@@ -119,6 +119,8 @@ class bookStore : public bookType, public memberType
 bookType::bookType()
 {
     //ctor
+
+    inputFile = "book.in";
 
     // Reading book details from input file
     ifstream inFile;
@@ -418,11 +420,13 @@ memberType::memberType()
 {
     //ctor
 
+    inputFile = "member.in";
+
     // Reading member details from input file
 
     ifstream inFile;
 
-    inFile.open("member.in");//"fileName.c_str());
+    inFile.open(inputFile.c_str());
 
     inFile >> totalMembers;
     getline(inFile, temp, '\n');
