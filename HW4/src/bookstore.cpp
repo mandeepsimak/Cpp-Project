@@ -29,7 +29,8 @@ void bookStore :: buyBook()
     cout << "Enter ISBN number of book: ";
     cin >> ISBNNo;
 
-    for(int i = 0; i < totalBooks; i++)
+    // Finding book in database
+    for(i = 0; i < totalBooks; i++)
     {
         if(ISBNNo == ISBNNumber[i])
         {
@@ -40,21 +41,23 @@ void bookStore :: buyBook()
             bookIndex = -1;
     }
 
+    // If book found
     if(bookIndex >= 0)
     {
         char mem;
         int memID;
-
+        // Check book in stock or not
         if(stock[bookIndex] > 0)
         {
             cout << "Are you a member(Y/N): ";
             cin >> mem;
-
+            // If customer is a member
             if(mem == 'Y' || mem == 'y')
             {
                 cout << "Enter member ID: ";
                 cin >> memID;
 
+                // Find member in database
                 for(i = 0; i < totalMembers; i++)
                 {
                     if(memID == memberID[i])
@@ -66,22 +69,19 @@ void bookStore :: buyBook()
                         memIndex = -1;
                 }
 
+                // If member found
                 if(memIndex >= 0)
                 {
+                    // Find discount if member has paid membership
                     if(membershipFee[memIndex] == 'Y' || membershipFee[memIndex] == 'y')
                         discount = 5 * bookPrice[bookIndex] / 100;
                     else
                         discount = 0;
 
+                    // Add average of amount spent in discount if booksBought = 10 and set spent amount to 0
                     if(booksBought[memIndex] == maxBook)
                     {
                         discount += amountSpent[memIndex] / 10;
-                        amountSpent[memIndex] = 0;
-                    }
-                    else
-                    {
-                        booksBought[memIndex]++;
-                        amountSpent[memIndex] += bookPrice[bookIndex];
                     }
                 }
                 else
@@ -89,6 +89,7 @@ void bookStore :: buyBook()
                     cout << "\n\t MEMBER DOES NOT EXISTS \n" << endl;
                 }
             }
+            // Show book cost
             int buy;
             cout << "\n Cost of book: " << bookPrice[bookIndex] << endl
                  << "Discount = " << discount << endl
@@ -99,6 +100,20 @@ void bookStore :: buyBook()
             if(buy == 1)
             {
                 cout << "\n Book Purchased. Thanks. \n" << endl;
+                if(mem == 'Y' || mem == 'y')
+                {
+                    // updating value in database of member
+                    if(booksBought[memIndex] == maxBook)
+                    {
+                        amountSpent[memIndex] = 0;
+                    }
+                    else
+                    {
+                        // If books bought < 10, increment books bought and add price in amount spent
+                        booksBought[memIndex]++;
+                        amountSpent[memIndex] += bookPrice[bookIndex];
+                    }
+                }
             }
         }
         else

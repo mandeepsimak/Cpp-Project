@@ -16,6 +16,7 @@ class bookStore : public bookType, public memberType
         /** buy book from book store */
         void buyBook();
 
+        /** Book store menu */
         void bookStoreMenu();
 
     protected:
